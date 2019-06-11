@@ -5,9 +5,10 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 
-const userRoute = require('./routes/user'); 
+const userRoute = require('./routes/user');
+const recipeRoute = require('./routes/recipe') 
 
-mongoose.connect('mongodb+srv://recipe-manager:'+ process.env.MONGO_ATLAS_PW+'@recipe-manager-h6st3.mongodb.net/test?retryWrites=true&w=majority', {
+mongoose.connect('mongodb+srv://recipe-manager:'+process.env.MONGO_ATLAS_PW+'@recipe-manager-h6st3.mongodb.net/test?retryWrites=true&w=majority', {
     useNewUrlParser : true
 }).then(() => {console.log(`database connection successful`)})
     .catch(err => {
@@ -25,6 +26,7 @@ app.use(morgan('dev'));
 
 //ROUTES
 app.use('/user', userRoute); 
+app.use('/recipe', recipeRoute)
 
 
 app.listen(4000, () => console.log('server running on port 4000')); 
