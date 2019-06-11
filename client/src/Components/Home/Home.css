@@ -1,0 +1,46 @@
+.Header{
+    background: black;
+    margin: 60px;
+    padding: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+button{
+   margin: 5px;
+   padding: 1px;
+   color: white;
+   background: black;
+   width: 10%;
+   font-weight: bold;
+}
+
+p{
+    color: gray;
+    text-align: center;
+    font-size: 25px;
+    
+}
+
+.wrapper{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    
+    
+}
+
+.feature{
+    width: 190px;
+    height: 265px;
+    
+}
+
+ li{
+    list-style: none;
+    padding: 1px;
+    margin: 1px;
+    font-size: 12px;
+}
+
+
