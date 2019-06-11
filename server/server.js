@@ -1,30 +1,33 @@
-const express = require('express');
+const express = require('express'); 
 const app = express(); 
-const bodyParser = require('body-parser');
+const morgan = require('morgan'); 
+const bodyParser = require('body-parser'); 
 const mongoose = require('mongoose');
-const cors = require('cors')
-PORT = 4000;
-require('dotenv').config();
 
-// console.log(process.env.PORT)
 
-const ShowAll = require('./Routes/showAll'); 
-const addTodo = require('./Routes/addTodo'); 
-const updateTodo = require('./Routes/updateTodo'); 
+const userRoute = require('./routes/user'); 
 
-app.use(cors());
+mongoose.connect('mongodb+srv://recipe-manager:'+ process.env.MONGO_ATLAS_PW+'@recipe-manager-h6st3.mongodb.net/test?retryWrites=true&w=majority', {
+    useNewUrlParser : true
+}).then(() => {console.log(`database connection successful`)})
+    .catch(err => {
+        console.log(err);
+        return console.log(`database connection unsuccessful`)
+    });
+
+//middleware
 app.use(bodyParser.urlencoded({
     extended:false
 }));
-app.use(bodyParser.json());     
+app.use(bodyParser.json())
+app.use(morgan('dev')); 
 
-mongoose.connect('mongodb+srv://hemant:hemant@node-rest-shop-iqovk.mongodb.net/test?retryWrites=true', {
-    useNewUrlParser: true
-}).then(() => console.log('database connected successfully'));
 
-app.use('/showall', ShowAll)
-app.use('/addtodo',addTodo);
-app.use('/updatetodo', updateTodo);  
+//ROUTES
+app.use('/user', userRoute); 
 
-app.use(bodyParser.json()); 
-app.listen(PORT, () => console.log(`server running on port ${PORT}`));
+
+app.listen(4000, () => console.log('server running on port 4000')); 
+
+
+
