@@ -2,33 +2,18 @@ import React, {Component} from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import TodoList from './todo-list'
-import EditTodo from './todo-edit'
-import CreateTodo from './todo-create'
-
+import UploadRecipe from './UploadRecipe'
+import DisplayRecipe from './DisplayRecipe'
 
 class App extends Component {
   render() {
     return (
      <Router>
         <div className="container">
-          <nav className="navbar navbar-expand-xl navbar-light bg-light">
-            <Link to="/" className="navbar-brand">Todo App</Link>
-            <div className="collapse navbar-collapse">
-              <ul className="navbar-nav mr-auto">
-                <li className="navbar-item">
-                  <Link to="/" className="nav-link">Todo</Link>
-                </li>
-                <li className="navbar-item">
-                  <Link to="/create" className="nav-link">Create Todo</Link>
-                </li>
-              </ul>
-            </div>
-          </nav>
-          <br/>
-          <Route exact path="/" component={TodoList} />
-          <Route path="/edit/:id" component={EditTodo} />
-          <Route path="/create" component={CreateTodo} />
+          <Link to="/display"> DisplayRecipe </Link>
+          <Link to="/upload">UploadRecipe</Link> 
+          <Route path="/upload" component= {UploadRecipe}/>
+          <Route path="/display" component= {DisplayRecipe}/>
         </div>
      </Router>
     );

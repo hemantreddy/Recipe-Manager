@@ -1,0 +1,24 @@
+.main{
+
+}
+
+ul{
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+li {
+    margin: 5px;
+    padding: 20px;   
+}
+label {
+    font-family: 'Times New Roman', Times, serif;
+    color:green;
+}
+
+.desc {
+    height: 150px;
+    width :200px;
+    border-start-end-radius: 3px;
+}
