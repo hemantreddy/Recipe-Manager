@@ -9,6 +9,7 @@ export default class Display extends React.Component{
                 <ul>
                 <li>
                 <label><h2>Title</h2></label>
+                
                 </li>
                 <li>
                 <label><h3>Description</h3></label>

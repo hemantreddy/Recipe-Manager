@@ -1,6 +1,11 @@
 import React, {Component} from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Link, Redirect } from 'react-router-dom'
 import "bootstrap/dist/css/bootstrap.min.css";
+import CreateTodo from './todo-create';
+import Home from './Home/Home';
+import Join from './Join/Join';
+import Signin from './Signin/Signin';
+import Header from './Home/header';
 
 import UploadRecipe from './UploadRecipe'
 import DisplayRecipe from './DisplayRecipe'
@@ -10,10 +15,18 @@ class App extends Component {
     return (
      <Router>
         <div className="container">
-          <Link to="/display"> DisplayRecipe </Link>
-          <Link to="/upload">UploadRecipe</Link> 
-          <Route path="/upload" component= {UploadRecipe}/>
+          <Header />
+          <Route path="/upload" render= {(props) => {
+            return true ? <UploadRecipe /> : 
+            <Redirect
+              to="/login" 
+            />
+          }}/>
           <Route path="/display" component= {DisplayRecipe}/>
+          <Route exact path = "/" component = {Home} />
+          {/* <Route path = "/Header" component = {Header}/> */}
+          <Route path = "/Join" component = {Join} />
+          <Route  path = "/Signin" component = {Signin} />
         </div>
      </Router>
     );

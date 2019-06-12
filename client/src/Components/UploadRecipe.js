@@ -48,7 +48,7 @@ export default class UploadRecipe extends React.Component{
             ingridients: this.state.ingridients,
             instructions: this.state.instructions
         }
-
+                
         this.setState({
             title: '',
             description: '',
@@ -68,7 +68,7 @@ export default class UploadRecipe extends React.Component{
                     </li>
                     <li>
                     <label>DESCRIPTION :</label>
-                    <input type="text" value = {this.state.description} onChange={this.OnDescription}/>
+                    <input className="desc" type="text" value = {this.state.description} onChange={this.OnDescription}/>
                     </li>
                     <li>
                     <label>INGREDIENTS :</label>
