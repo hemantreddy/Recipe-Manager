@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router(); 
-const Recipe = require('../models/Recipe'); 
+const Recipe = require('../models/Recipe');
+
+const checkAuth = require('../middleware/checkAuth')
 
 router.get('/', (req, res, next) => {
     Recipe.find()
@@ -19,7 +21,7 @@ router.get('/', (req, res, next) => {
         });
 });
 
-router.post('/add', (req, res, next) => {
+router.post('/add', checkAuth, (req, res, next) => {
     const recipe = new Recipe({
         title : req.body.title, 
         instructions: req.body.instructions,
@@ -41,7 +43,7 @@ router.post('/add', (req, res, next) => {
         });
 });
 
-router.patch('/:recipeId', (req, res, next) => {
+router.patch('/:recipeId', checkAuth, (req, res, next) => {
     const id = req.params.recipeId
     const updateObject = req.body
     Recipe.update({_id : id}, {$set : updateObject})
@@ -54,7 +56,7 @@ router.patch('/:recipeId', (req, res, next) => {
         });
 });
 
-router.delete('/:recipeId', (req, res, next) => {
+router.delete('/:recipeId', checkAuth, (req, res, next) => {
     Recipe.remove({_id : req.params.recipeId})
         .exec()
         .then(result => {
