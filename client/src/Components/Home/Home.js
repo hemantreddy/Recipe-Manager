@@ -1,49 +1,30 @@
 import React, { Component } from 'react';
 import '../Home/Home.css';
-import logo from '../logo_center.jpg';
-import twitter from '../icn_tw_off.png';
-import facebook from '../IMG_5876 copy 3.png';
-import recipes from '../recipes.png';
-import menus from '../menus.png';
-import planner from '../planner.png';
-import shopping from '../shopping.png';
+import logo from '../../Assets/Images/logo_center.jpg';
+import twitter from '../../Assets/Images/icn_tw_off.png';
+import facebook from '../../Assets/Images/IMG_5876 copy 3.png';
+import recipes from '../../Assets/Images/recipes.png';
+import menus from '../../Assets/Images/menus.png';
+import planner from '../../Assets/Images/planner.png';
+import shopping from '../../Assets/Images/shopping.png';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
 export default class Home extends Component {
     render() {
-        // const twitterClick = () => {
-        //     console.log('twitterClick');
-        // }
-        // const facebookClick = () => {
-        //     console.log('facebookClick');
-        // }
-        // const homeClick = () => {
-        //     console.log('HomepageClick');
-
-        // }
-
-        // const joinClick = () => {
-        //     console.log('JoinClick');
-        // }
-
-        // const signinClick = () => {
-        //     console.log('SignInClick');
-        // }
+       
         return(
-            <div> 
-                <div className = "Header">
+            <div>
+            <div className = "Header">
                 
-                <Link to = "www.google.com"><img hspace = "10px" src = {twitter} alt = {"twitter"} /></Link>
-                <img  hspace = "10px" src = {facebook} alt = {"facebook"}  />
-                <img hspace = "250px" src = {logo} alt = {"logo"} /> 
-   
- 
-
-               
-
-                <button  > JOIN </button>
-                <button  > SIGN IN </button>
-                </div>
+            <img hspace = "10px" src = {twitter} alt = {"twitter"} />
+            <img  hspace = "10px" src = {facebook} alt = {"facebook"}  />
+            <img hspace = "250px" src = {logo} alt = {"logo"} /> 
+            <div className = "btn">
+            <Link to="/Join"> Join </Link>
+            <Link  to="/Signin"> Signin </Link>
+            </div>
+           </div>
+            
 
                 <p> Finally, some help in the kitchen. </p>
 
@@ -80,6 +61,7 @@ export default class Home extends Component {
 
                
             </div>
+          
         )
     }
 }

@@ -7,13 +7,11 @@
     margin-right: auto;
 }
 
-button{
+btn{
    margin: 5px;
    padding: 1px;
-   color: white;
-   background: black;
    width: 10%;
-   font-weight: bold;
+  
 }
 
 p{
@@ -26,6 +24,7 @@ p{
 .wrapper{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    text-align: center;
     
     
 }

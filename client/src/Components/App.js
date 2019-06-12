@@ -3,6 +3,9 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import "bootstrap/dist/css/bootstrap.min.css";
 import CreateTodo from './todo-create';
 import Home from './Home/Home';
+import Join from './Join/Join';
+import Signin from './Signin/Signin';
+import Header from './Home/header';
 
 
 
@@ -11,9 +14,14 @@ class App extends Component {
     return (
       <Router>
        <div className = "container">
+       
 
-      
-       <Route path = "/" exact component = {Home} />
+       
+       <Route exact path = "/" component = {Home} />
+       <Route path = "/Header" component = {Header}/>
+       <Route path = "/Join" component = {Join} />
+       <Route  path = "/Signin" component = {Signin} />
+
        </div>
 
        </Router>
