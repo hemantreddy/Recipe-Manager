@@ -17,9 +17,9 @@ class App extends Component {
         <div className="container">
           <Header />
           <Route path="/upload" render= {(props) => {
-            return true ? <UploadRecipe /> : 
+            return false ? <UploadRecipe /> : 
             <Redirect
-              to="/login" 
+              to="/signin" 
             />
           }}/>
           <Route path="/display" component= {DisplayRecipe}/>

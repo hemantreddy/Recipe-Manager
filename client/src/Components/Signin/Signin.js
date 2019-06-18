@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+
 
 class Signin extends Component {
     constructor(props){
@@ -26,6 +28,18 @@ class Signin extends Component {
             
             console.log(`Form submitted:`);
             console.log(`Signin Emailaddress: ${this.state.Signin_Emailaddress}`);
+
+            const newSignin = {
+                email: this.state.Signin_Emailaddress,
+                password: this.state.Signin_password
+            };
+
+            axios.post('http://localhost:4000/user/login', newSignin)
+            .then(res => {
+                localStorage.setItem('token', res.data.token)
+                console.log(res.data)});
+
+
             this.setState({
                 Signin_Emailaddress: '',
                 Signin_password: '',

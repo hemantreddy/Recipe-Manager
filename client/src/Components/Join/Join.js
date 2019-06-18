@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import {Redirect} from 'react-router-dom';
+import axios from 'axios';
 
 
 
@@ -7,22 +9,17 @@ import React, { Component } from 'react';
         super(props);
 
         this.state = {
-            Join_firstname: '',
-            Join_lastname: '',
+            Join_name: '',
             Join_email: '',
             Join_password: '',
-            Join_confirmpassword: ''
+            Join_confirmpassword: '',
+            isLoggedIn: false,
 
         }
     }
-    onChangeJoinFirstname = (e) => {
+    onChangeJoinname = (e) => {
         this.setState({
-            Join_firstname: e.target.value
-        });
-    }
-    onChangeJoinLastname = (e) => {
-        this.setState({
-            Join_lastname: e.target.value
+            Join_name: e.target.value
         });
     }
     onChangeJoinEmail = (e) => {
@@ -44,36 +41,46 @@ import React, { Component } from 'react';
         e.preventDefault();
         
         console.log(`Form submitted:`);
-        console.log(`Join Firstname: ${this.state.Join_firstname}`);
-        console.log(`Join Lastname: ${this.state.Join_lastname}`);
-        console.log(`Join Email: ${this.state.Join_email}`);
-        console.log(`Join Password: ${this.state.Join_password}`);
-        console.log(`Join ConfirmPassword: ${this.state.Join_confirmpassword}`);
+        console.log(` name: ${this.state.Join_name}`);
+        console.log(` Email: ${this.state.Join_email}`);
+        console.log(` Password: ${this.state.Join_password}`);
+        console.log(` ConfirmPassword: ${this.state.Join_confirmpassword}`);
+
+        const newJoin = {
+            name: this.state.Join_name,
+            email: this.state.Join_email,
+            password: this.state.Join_password
+
+        };
+
+        axios.post('http://localhost:4000/user/signup', newJoin)
+        .then(res => {
+            console.log(res.data)
+            this.setState({
+                isLoggedIn: true,
+                Join_name: '',
+                Join_email: '',
+                Join_password: '',
+                Join_confirmpassword: ''
+            })
+        });
         
-        this.setState({
-            Join_firstname: '',
-            Join_lastname: '',
-            Join_email: '',
-            Join_password: '',
-            Join_confirmpassword: ''
-        })
     }
 
 
 
     render() {
+        if(this.state.isLoggedIn) {
+            return <Redirect to='/signin' />
+        }
         return(
             <div> 
                 <h3> Already have a Pepperplate account? <a href = "/Signin"> Sign in</a> </h3>
                 <hr />
                 <form onSubmit={this.onSubmit}>
-                    <div className = "firstname">
-                        <label> Firstname : </label>
-                        <input  type="text" value={this.state.Join_firstname} onChange={this.onChangeJoinFirstname}/>
-                    </div>
-                    <div className = "lastname">
-                    <label> Lastname : </label>
-                        <input  type="text" value={this.state.Join_lastname} onChange={this.onChangeJoinLastname}/>
+                    <div className = "name">
+                        <label> name : </label>
+                        <input  type="text" value={this.state.Join_name} onChange={this.onChangeJoinname}/>
                     </div>
                     <div className = "email">
                     <label> Email : </label>
